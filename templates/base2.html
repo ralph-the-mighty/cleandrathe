@@ -71,16 +71,33 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">New Page</h4>
-				</div><form method="GET" action="/newpage">
-				<div class="modal-body">
-					
-						<input name="name" class="form-control"></input>			
-					
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<a href="#" type="button" class="btn btn-primary">confirm</a>
-				</div></form>
+				<form class="form-horizontal" method="GET" action="/newpage">
+					<div class="modal-body">
+					<div class="form-group">
+					
+						<div class="col-xs-1"></div>
+												
+						<label for="inputEmail" class="control-label col-xs-2">Name</label>					
+						<div class="col-xs-6">
+							<input type="text" class="form-control" name="name" id="name">
+						</div>
+						
+						<div class="col-xs-3"></div>
+						
+					</div>
+					</div>
+						<!--<div class="control-group">
+							<label class="control-label" for="textinput">Text Input</label>
+							<div class="controls">
+								<input id="textinput" name="textinput" type="text" placeholder="placeholder" class="input-xlarge">
+							</div>
+						</div>-->
+						<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">confirm</a>
+						</div>
+				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
