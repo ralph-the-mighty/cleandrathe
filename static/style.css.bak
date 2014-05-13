@@ -1,0 +1,11 @@
+.main-image{
+	height: 500px;
+}
+.navbar-form-custom{
+	padding:0;
+	border:none;
+}
+body{
+	margin-bottom: 80px;
+	margin-top: 80px;
+}

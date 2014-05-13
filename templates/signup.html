@@ -1,0 +1,41 @@
+{% extends "base2.html" %}
+
+{% block title %}
+	Login
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+		<div class="col-lg-3">
+		</div>
+		<div class="col-lg-6">
+		<div class="well center">
+		<form method="POST">
+			<legend>Signup</legend>
+			<div class="form-group">
+				<label>Name</label>
+				<input type="name" class="form-control" name="name" placeholder="Enter name">
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<input type="password" class="form-control" name="password" placeholder="Password">
+			</div>
+			<div class="form-group">
+				<label>Confirm Password</label>
+				<input type="password" class="form-control" name="cpassword" placeholder="Password">
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="email" class="form-control" name="email" placeholder="example@example.com">
+			</div>
+			<p style="color:red;">{{error}}</p>
+			<button type="submit" class="btn btn-default">signup</button>
+		</form>
+		</div>
+		</div class="col-lg-3">
+		</div>
+		</div>
+		</div>
+	</div>
+{% endblock %}

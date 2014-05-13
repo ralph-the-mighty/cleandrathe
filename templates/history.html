@@ -1,0 +1,37 @@
+<!--history.html-->
+{% extends "base2.html" %}
+
+{% block title %}
+	{{name}}-history
+{% endblock %}
+
+{% block content %}
+	<div class="top container">
+		<h3>{{name}}--history</h3>
+		<!--<ul>
+			{% for page in pages %}
+				<li>{{page.author_name}} {{page.created.date()}} {{page.content[0:400]}} . . . 
+					<a href="/{{page.url}}?v={{page.version}}">view<a/>, 
+					<a href="/edit/{{page.url}}?v={{page.version}}">edit</a>
+				</li>
+			{% endfor %}
+		</ul>-->
+		<table class="table table-condensed">
+			{% for page in pages %}
+			<tr>
+				<td>{{page.author_name}}</td>
+				<td>{{page.created.date()}}</td>
+				<td>
+					{% if page.comment %}
+						{{page.comment}}
+					{% else %}
+						<b> . . . </b>
+					{% endif %}
+				</td>
+				<td><a href="/{{page.url}}?v={{page.version}}">view</a> <a href="/edit/{{page.url}}?v={{page.version}}">edit</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	
+{% endblock %}

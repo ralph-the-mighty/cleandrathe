@@ -1,0 +1,30 @@
+application: cleandrathe
+version: 1-5
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /static
+  static_dir: static
+
+#temporary fix for edit page stylesheet malfunction  
+- url: /history/static
+  static_dir: static
+- url: /edit/static
+  static_dir: static
+
+- url: .*
+  script: main.app
+
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+
+- name: jinja2
+  version: latest

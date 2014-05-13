@@ -1,0 +1,51 @@
+{%extends "base2.html"%}
+
+{% block title %}
+	{{page_name}}
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-7">
+				<h3>{{page_name}}  <small>last edited on {{created}} by {{author_name}}</small></h3>
+				<hr/>
+				<p>
+					{{content}}
+				</p>
+				<a href="edit/{{url}}" class="btn btn-default">
+					<span class="glyphicon glyphicon-wrench"></span> edit
+				</a>
+				<a href="history/{{url}}" class="btn btn-default">
+					<span class="glyphicon glyphicon-list-alt"></span> history
+				</a>
+
+			</div>
+			<div class="col-md-3">
+				<h4>history</h4>
+				<ol>
+					{% for item in versions %}
+						{% if item.version == version_no %}
+							<b>
+							<li>{{item.created.date()}}, 
+							{{item.author_name}}, 
+							<a href="/{{url}}?v={{item.version}}">view</a>,
+							<a href="/edit/{{url}}?v={{item.version}}">edit</a>
+							</b>
+							
+						{% else %}
+							<li>{{item.created.date()}}, 
+							{{item.author_name}}, 
+							<a href="/{{url}}?v={{item.version}}">view</a>,
+							<a href="/edit/{{url}}?v={{item.version}}">edit</a></b>
+						{% endif %}
+						
+					{% endfor %}
+				</ol>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>		
+{% endblock %}

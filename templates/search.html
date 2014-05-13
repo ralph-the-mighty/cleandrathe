@@ -1,0 +1,22 @@
+{%extends "base2.html"%}
+
+{% block title %}
+		search-{{q}}
+{% endblock %}
+
+{% block content %}
+	<div class='container'>
+		<div id="wrapper" style="padding:20px">
+			<h3>search - <i>"{{q}}"</i></h3>
+			{%for page in lst[0:10]%}
+				<div class="result">
+					<h4>
+						<a href="/{{page.url}}?v=0">{{page.name}}</a>
+					</h4>
+					<div class="result-text">{{ page.content[0:500] }} . . .</div>
+					<hr>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

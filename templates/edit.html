@@ -1,0 +1,29 @@
+{% extends 'base2.html' %}
+
+{% block title %}
+	{{page_name}}-edit
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-lg-2">
+			</div>
+			
+			<div class="col-lg-8">
+				<h3>{{page_name}} - edit</h3>
+				<form method='post'>
+					<textarea style="font-family:monospace;" class="form-control" rows="15" name="content">{{content}}</textarea>
+					<label>comment:<input name="comment" class="form-control"></input></label>
+					<a href="/{{page_url}}" class="btn btn-default" class="pull-right"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
+					<button class='btn btn-info' type='submit'><span class="glyphicon glyphicon-floppy-disk"></span> save</button>
+					<a href="/delete/{{page_url}}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> delete</a>
+				</form>
+			</div>
+			
+			<div class="col-lg-2">
+			</div>
+		</div>
+	</div>
+{% endblock %}
