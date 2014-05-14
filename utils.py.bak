@@ -1,6 +1,9 @@
 #
 #utils.py
 #
+	
+def day_delta(dt1,dt2):
+	pass
 
 def time_diff_string(newdt,olddt):
 	delta = newdt-olddt
