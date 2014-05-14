@@ -387,17 +387,17 @@ class Test(Handler):
 	def get(self):
 		self.render('this is a string')
 			
-PAGE_RE = r'/(?:[a-zA-Z0-9_-]+/?)*'			
+PAGE_RE = r'(?:[a-zA-Z0-9_-]+/?)*'			
 app = webapp2.WSGIApplication([
 	('/signup', Signup),
 	('/login', Login),
 	('/test',Test),
 	('/logout',Logout),
 	('/search',Search),
-	('/delete/('+PAGE_RE+')',Delete),
 	('/newpage',NewPage),
 	('/',Home),
-	('/history/((?:[a-zA-Z0-9_-]+/?)*)',History),
-	('/edit/((?:[a-zA-Z0-9_-]+/?))*', EditPage),
-	('/((?:[a-zA-Z0-9_-]+/?))*', WikiPage)
+	('/delete/('+PAGE_RE+')',Delete),
+	('/history/(' + PAGE_RE + ')',History),
+	('/edit/(' + PAGE_RE + ')', EditPage),
+	('/(' + PAGE_RE + ')', WikiPage)
 ], debug=True)
