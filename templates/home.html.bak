@@ -12,9 +12,8 @@
 					Welcome!
 				</h1>
 				Welcome, {{user.name}}!  This home page rally needs an update, huh?
-				</h3>
 					Using the wiki
-				</h3>
+				</h1>
 				This wiki uses <i>Creole</i>, a mini formatting language that you can use to 
 				make your page look organized and functional.
 				To edit a page, click the edit link in the top right corner of a page.  
