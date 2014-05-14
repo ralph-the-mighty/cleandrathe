@@ -8,6 +8,14 @@
 {% block content %}
 	<div class="top container">
 		<h3>{{name}}--history</h3>
+		<!--<ul>
+			{% for page in pages %}
+				<li>{{page.author_name}} {{page.created.date()}} {{page.content[0:400]}} . . . 
+					<a href="/{{page.url}}?v={{page.version}}">view<a/>, 
+					<a href="/edit/{{page.url}}?v={{page.version}}">edit</a>
+				</li>
+			{% endfor %}
+		</ul>-->
 		<table class="table table-condensed">
 			{% for page in pages %}
 			<tr>
