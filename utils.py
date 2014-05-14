@@ -2,6 +2,19 @@
 #utils.py
 #
 
-get_month(datetime):
-	months = ['january','february','march','april','may','june','july','august','september','october','november','december']
+def time_diff_string(newdt,olddt):
+	delta = newdt-olddt
+	
+	print delta.days
+	print delta.seconds
+	
+	if delta.days:
+		return '%s days ago' % delta.days
+	elif delta.seconds > 3600:
+		return '%s hours ago' % (delta.seconds / 3600)
+	elif delta.seconds > 60:
+		return '%s minutes ago' % (delta.seconds / 60)
+	else:
+		return '%s seconds ago' % delta.seconds
+	
 	
