@@ -112,7 +112,7 @@ class Handler(webapp2.RequestHandler):
 		return t.render(params)
 		
 	def render(self, template, **kw):
-		self.write(self.render_str(template, **kw))
+		self.write(self.render_str(template,location=self.get_url(), **kw))
 		
 	#methods for handling cookies
 	def set_cookie(self,name,val,exp):
@@ -235,11 +235,13 @@ class Home(Handler):
 		name = self.request.get('name')
 		self.redirect('/edit/%s' % (name_to_url(name)) )
 
+		
 class Delete(Handler):
 	def get(self,page_url):
 		delete_page(page_url)
 		self.redirect('/')
 
+		
 class Logout(Handler):
 	def get(self):
 	
@@ -250,7 +252,7 @@ class Logout(Handler):
 			self.redirect(return_address)
 		else:
 			self.redirect('/')
-
+		
 		
 class WikiPage(Handler):
 
@@ -291,12 +293,13 @@ class WikiPage(Handler):
 		else:
 			self.redirect('/edit/%s?' % ( page_url ) ) 
  
+ 
 class NewPage(Handler):
 	def get(self):
 		name = self.request.get('name')
 		self.redirect('/edit/%s' % name)
 
-			
+		
 class EditPage(Handler):
 	def get(self, page_url):
 		#grab the name and version number from the url and 
@@ -352,8 +355,19 @@ class EditPage(Handler):
 		#redirect home
 		time.sleep(.25)
 		self.redirect('/' + name_to_url(page_name)+"?v=0")
+
 		
-		
+class UserPage(Handler):
+	def get(self,name):
+		u = User.by_name(name)
+		if u:
+			self.render('user.html',
+						 search_user=u,
+						 user=self.user)
+		else:
+			self.write("no user with name %s could be found" % name)
+
+			
 class Search(Handler):
 	def get(self):
 		q = self.request.get('q')
@@ -369,6 +383,7 @@ class Search(Handler):
 		self.render("search.html",
 					user=self.user,
 					q=q, lst=lst)
+
 					
 class History(Handler):
 	def get(self,url):
@@ -382,7 +397,8 @@ class History(Handler):
 					name = name,
 					pages = pages,
 					user = self.user)
-		
+
+					
 class Test(Handler):
 	def get(self):
 		self.render('this is a string')
@@ -395,6 +411,7 @@ app = webapp2.WSGIApplication([
 	('/logout',Logout),
 	('/search',Search),
 	('/newpage',NewPage),
+	('/user/(' + PAGE_RE + ')', UserPage),
 	('/',Home),
 	('/delete/('+PAGE_RE+')',Delete),
 	('/history/(' + PAGE_RE + ')',History),
