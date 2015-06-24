@@ -16,6 +16,7 @@
 #
 from urlparse import urlparse
 from urlparse import urlsplit
+import urllib
 import logging
 import sys
 import webapp2
@@ -76,22 +77,10 @@ def fetch_page(url,version):
 			return db.GqlQuery(query_str).get()
 			
 def name_to_url(name):
-	newstr = ''
-	for c in name:
-		if c == ' ':
-			newstr += '_'
-		else:
-			newstr += c
-	return newstr
+	return urllib.quote(name)
 	
 def url_to_name(url):
-	newstr = ''
-	for c in url:
-		if c == '_':
-			newstr += ' '
-		else:
-			newstr += c
-	return newstr
+	return urllib.unquote(url)
 		
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -297,7 +286,7 @@ class WikiPage(Handler):
 class NewPage(Handler):
 	def get(self):
 		name = self.request.get('name')
-		self.redirect('/edit/%s' % name)
+		self.redirect('/edit/%s' % name_to_url(name))
 
 		
 class EditPage(Handler):
@@ -403,7 +392,7 @@ class Test(Handler):
 	def get(self):
 		self.render('this is a string')
 			
-PAGE_RE = r'(?:[a-zA-Z0-9_-]+/?)*'			
+PAGE_RE = r"(?:[a-zA-Z0-9%_-]+/?)*"			
 app = webapp2.WSGIApplication([
 	('/signup', Signup),
 	('/login', Login),
